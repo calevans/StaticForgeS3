@@ -44,7 +44,7 @@ class Feature extends BaseFeature implements FeatureInterface
 
             try {
                 $this->s3Service = new S3Service($this->logger, $config);
-                $container->set(S3Service::class, $this->s3Service);
+                $container->add(S3Service::class, $this->s3Service);
                 $this->logger->log('INFO', 'S3MediaOffload Feature registered');
             } catch (\Exception $e) {
                 $this->logger->log('ERROR', 'Failed to initialize S3Service: ' . $e->getMessage());
