@@ -21,7 +21,7 @@ class Feature extends BaseFeature implements FeatureInterface
     private S3Service $s3Service;
 
     protected array $eventListeners = [
-        'console.init' => ['method' => 'registerCommands', 'priority' => 100],
+        'CONSOLE_INIT' => ['method' => 'registerCommands', 'priority' => 100],
     ];
 
 

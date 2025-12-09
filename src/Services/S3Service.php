@@ -14,12 +14,14 @@ class S3Service
     private Log $logger;
     private string $bucket;
     private string $region;
+    private ?string $customEndpoint = null;
 
     public function __construct(Log $logger, array $config)
     {
         $this->logger = $logger;
         $this->bucket = $config['bucket'] ?? '';
         $this->region = $config['region'] ?? 'us-east-1';
+        $this->customEndpoint = $config['endpoint'] ?? null;
 
         if (empty($this->bucket)) {
             throw new Exception('S3 Bucket is not configured.');
@@ -112,5 +114,14 @@ class S3Service
             $this->logger->log('ERROR', "Failed to download $key: " . $e->getMessage());
             return false;
         }
+    }
+
+    public function getBaseUrl(): string
+    {
+        if ($this->customEndpoint) {
+            return rtrim($this->customEndpoint, '/') . '/' . $this->bucket;
+        }
+
+        return sprintf('https://%s.s3.%s.amazonaws.com', $this->bucket, $this->region);
     }
 }

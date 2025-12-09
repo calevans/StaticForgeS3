@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Features\S3MediaOffload\Services;
+namespace Calevans\StaticForgeS3\Tests\Unit\Services;
 
 use Aws\Result;
 use Aws\S3\S3Client;

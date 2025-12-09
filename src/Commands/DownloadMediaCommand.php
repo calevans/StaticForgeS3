@@ -89,7 +89,13 @@ class DownloadMediaCommand extends Command
             RecursiveIteratorIterator::SELF_FIRST
         );
 
-        $s3UrlPattern = '/https?:\/\/[^\s"\']+\.s3\.[^\s"\']+\.amazonaws\.com\/([^\s"\']+)/';
+        $baseUrl = $this->s3Service->getBaseUrl();
+        $escapedBaseUrl = preg_quote($baseUrl, '/');
+        // Make protocol optional/flexible
+        $escapedBaseUrl = str_replace('https', 'https?', $escapedBaseUrl);
+
+        $s3UrlPattern = '/' . $escapedBaseUrl . '\/([^\s"\']+)/';
+
         // Also handle custom endpoints if possible, but regex is hard without knowing the endpoint.
         // Let's assume standard S3 URLs for now or try to match based on the filename if we knew it.
         // But we don't know which files correspond to which S3 URLs easily without a map.
