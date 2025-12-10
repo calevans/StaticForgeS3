@@ -1,11 +1,15 @@
-# S3MediaOffload
+# [StaticForge](https://calevans.com/staticforge) S3MediaOffload
 
 A StaticForge feature package.
+
+Copyright (c) 2025 Cal Evans <br />
+License: MIT
 
 ## Installation
 
 ```bash
 composer require calevans/staticforge-s3
+php vendor/bin/staticforge feature:setup S3MediaOffload
 ```
 
 ## Configuration
