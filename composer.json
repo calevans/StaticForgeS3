@@ -15,10 +15,8 @@
     },
     "require": {
         "php": "^8.4",
-        "aws/aws-sdk-php": "^3.366"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^10.0"
+        "aws/aws-sdk-php": "^3.366",
+        "eicc/staticforge": ">=1.14.0"
     },
     "extra": {
         "staticforge": {
